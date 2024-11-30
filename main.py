@@ -24,8 +24,19 @@ def myabout():
 @app.post('/home')
 def homepage():
     return {f'hello world how are you'}
+@app.get('/contact/{name}') #path parameter
+def nameer(name:str):
+    return {'name':name}
 
-@app.post('/data')
-def datastore(todo:todo):
-    marks=todo.task()
-    return {'marks':marks}
+food_items={
+    'northindian':['biriyani','mutton','chicken'],
+    'southindian':['thalli','dhonne biriyani','chicken biriyani','mutton_biriyani'],
+    'bihari':['mutton','chicken','litti choka','mashroom']
+}
+
+@app.get('/view/')
+def viewer(marks1:int=21,marks2:int=25):
+    return {'marks':marks1+marks2}
+@app.get('/hotel/{cusine}')
+def hotelwork(cusine):
+    return food_items.get(cusine)
